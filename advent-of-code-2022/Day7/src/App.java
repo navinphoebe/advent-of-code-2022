@@ -32,7 +32,7 @@ public class App {
         String line = reader.readLine();
         while (line != null) {
             if (line.contains("$")) {
-                if (line.contains("ls")) {
+                if (line.contains("$ ls")) {
                 } else if (line.contains("..")) {
                     currentDir = listOfDir[currentDir].dirContaining;
                     if (currentDir == -1) {
