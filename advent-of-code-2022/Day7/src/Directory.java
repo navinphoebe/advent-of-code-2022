@@ -1,12 +1,12 @@
 public class Directory {
 
     public int sizeOfFiles;
-    public int dirContaining;
+    public Directory dirContaining;
     public int dirNum;
     public String name;
 
 
-    public Directory (String name, int dirContaining, int dirNum){
+    public Directory (String name, Directory dirContaining, int dirNum){
         this.dirContaining = dirContaining;
         this.dirNum = dirNum;
         this.name = name;

@@ -7,19 +7,19 @@ public class App {
     public static int currentDir = 0;
     public static int howManyDir = 0;
 
-    public static void addFileSize(int num, int current) {
-        listOfDir[current].addFiles(num);
-        if (listOfDir[current].dirContaining == -1) {
+    public static void addFileSize(int num, Directory directory) {
+        directory.addFiles(num);
+        if (directory.dirContaining == null) {
             return;
         } else {
-            addFileSize(num, listOfDir[current].dirContaining);
+            addFileSize(num, directory.dirContaining);
         }
     }
 
     private static void findAndChangeToFile(String string) {
         for (int i = 0; i < listOfDir.length; i++) {
             if (listOfDir[i] == null) {
-            } else if (listOfDir[i].name.equals(string) && listOfDir[i].dirContaining == listOfDir[currentDir].dirNum) {
+            } else if (listOfDir[i].name.equals(string) && listOfDir[i].dirContaining == listOfDir[currentDir]) {
                 currentDir = listOfDir[i].dirNum;
                 break;
             }
@@ -27,14 +27,14 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        listOfDir[0] = new Directory("/", -1, 0);
+        listOfDir[0] = new Directory("/", null, 0);
         var reader = new BufferedReader(new FileReader("input.txt"));
         String line = reader.readLine();
         while (line != null) {
             if (line.contains("$")) {
                 if (line.contains("$ ls")) {
                 } else if (line.contains("..")) {
-                    currentDir = listOfDir[currentDir].dirContaining;
+                    currentDir = listOfDir[currentDir].dirContaining.dirNum;
                     if (currentDir == -1) {
                         currentDir = 0;
                     }
@@ -47,11 +47,11 @@ public class App {
             } else if (line.contains("dir")) {
                 String[] file = line.split(" ");
                 howManyDir += 1;
-                listOfDir[howManyDir] = new Directory(file[1], currentDir, howManyDir);
+                listOfDir[howManyDir] = new Directory(file[1], listOfDir[currentDir], howManyDir);
             } else {
                 String[] file = line.split(" ");
                 int num = Integer.parseInt(file[0]);
-                addFileSize(num, currentDir);
+                addFileSize(num, listOfDir[currentDir]);
             }
             line = reader.readLine();
         }
@@ -71,7 +71,7 @@ public class App {
             if (listOfDir[i] != null) {
                 System.out.println(listOfDir[i].sizeOfFiles);
             }
-        }
+        } 
         System.out.println(howManyDir);
         System.out.println(bestValue);
     }
