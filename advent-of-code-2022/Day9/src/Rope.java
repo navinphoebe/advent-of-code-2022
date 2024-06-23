@@ -26,13 +26,11 @@ public class Rope {
 
     public void updateTailPosition() {
         if (tail[0] == head[0] && tail[1] == head[1]) {
-            logTailPosition();
             return;
         }
         int difference = Math.abs(head[0] - tail[0]);
         int difference2 = Math.abs(head[1] - tail[1]);
         if (difference == 1 && difference2 == 1) {
-            logTailPosition();
             return;
         }
         if (tail[0] == head[0]) {
