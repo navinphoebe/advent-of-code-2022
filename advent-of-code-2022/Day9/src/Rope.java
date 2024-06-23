@@ -25,17 +25,17 @@ public class Rope {
     }
 
     public void updateTailPosition() {
-        if (tail[0] == head[0] && tail[1] == head[1]){
+        if (tail[0] == head[0] && tail[1] == head[1]) {
             logTailPosition();
             return;
         }
         int difference = Math.abs(head[0] - tail[0]);
         int difference2 = Math.abs(head[1] - tail[1]);
-        if (difference == 1 && difference2 == 1){
+        if (difference == 1 && difference2 == 1) {
             logTailPosition();
             return;
         }
-        if (tail[0] == head[0]){
+        if (tail[0] == head[0]) {
             if (head[1] + 1 < tail[1]) {
                 tail[1] -= 1;
             } else if (head[1] - 1 > tail[1]) {
@@ -43,9 +43,8 @@ public class Rope {
             }
             logTailPosition();
             return;
-            // if on the same thingy
         }
-        if (tail[1] == head[1]){
+        if (tail[1] == head[1]) {
             if (head[0] + 1 < tail[0]) {
                 tail[0] -= 1;
             } else if (head[0] - 1 > tail[0]) {
@@ -53,12 +52,8 @@ public class Rope {
             }
             logTailPosition();
             return;
-            // if on the same thingy
         }
 
-        //diagonal touching!!!
-
-        
         if (head[1] < tail[1]) {
             tail[1] -= 1;
         } else if (head[1] > tail[1]) {
@@ -69,7 +64,7 @@ public class Rope {
         } else if (head[0] > tail[0]) {
             tail[0] += 1;
         }
-    
+
         logTailPosition();
     }
 

@@ -6,18 +6,18 @@ public class App {
         var reader = new BufferedReader(new FileReader("input.txt"));
         String line = reader.readLine();
         Rope rope = new Rope();
-        while(line != null) {
+        while (line != null) {
             String[] directions = line.split(" ");
             String where = directions[0];
             int howLong = Integer.parseInt(directions[1]);
-            for (int i = 0; i < howLong; i++){
-                 if (where.contains("R")){
+            for (int i = 0; i < howLong; i++) {
+                if (where.contains("R")) {
                     rope.moveRight();
-                } else if (where.contains("L")){
+                } else if (where.contains("L")) {
                     rope.moveLeft();
-                } else if (where.contains("U")){
+                } else if (where.contains("U")) {
                     rope.moveUp();
-                } else if (where.contains("D")){
+                } else if (where.contains("D")) {
                     rope.moveDown();
                 }
             }
@@ -25,7 +25,7 @@ public class App {
         }
         reader.close();
         System.out.println(rope.placesTouched + 1);
-        
+
     }
 
 }
